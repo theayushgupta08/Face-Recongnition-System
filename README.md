@@ -1,6 +1,12 @@
 # Face Recognition System
 
-## Step 1: Create a Dataset Folder
+## Step 1: Install requirements
+
+```bash
+pip install face-recongnition opencv-python pickle dlib
+```
+
+## Step 2: Create a Dataset Folder
 
 Organize your dataset in the following structure:
 
@@ -17,7 +23,7 @@ Dataset/
     └── ...
 ```
 
-## Step 2: Generate Encodings
+## Step 3: Generate Encodings
 
 Run the following command to generate the `encodings.pickle` file:
 
@@ -25,7 +31,7 @@ Run the following command to generate the `encodings.pickle` file:
 python encode_faces.py
 ```
 
-## Step 3: Test the Application in Real-Time
+## Step 4: Test the Application in Real-Time
 
 Run the following command to test the application:
 
