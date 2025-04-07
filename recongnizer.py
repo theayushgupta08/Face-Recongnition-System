@@ -19,7 +19,7 @@ while True:
     names = []
 
     for encoding in encodings:
-        matches = face_recognition.compare_faces(data["encodings"], encoding)
+        matches = face_recognition.compare_faces(data["encodings"], encoding, tolerance=0.6)
         name = "Unknown"
 
         if True in matches:
@@ -30,7 +30,16 @@ while True:
                 name = data["names"][i]
                 counts[name] = counts.get(name, 0) + 1
 
-            name = max(counts, key=counts.get)
+            # Get the name with the highest count
+            best_match = max(counts, key=counts.get)
+
+            # Verify the match using face distance
+            face_distances = face_recognition.face_distance(data["encodings"], encoding)
+            best_match_index = matches.index(True)
+            if face_distances[best_match_index] <= 0.6:  # Adjust threshold as needed
+                name = best_match
+            else:
+                name = "Unknown"
 
         names.append(name)
 
